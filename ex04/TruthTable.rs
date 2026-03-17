@@ -13,13 +13,15 @@ fn result(formula: &str, variables: &Vec<char>, values: &Vec<u8>) -> u8 {
             stack.push(values[index]);
         } else {
             let b = stack.pop().unwrap();
-            let a = stack.pop().unwrap();
+            let a = stack.pop().unwrap(); // will crash if '!' is the operator
             // parse the operators
             let res = match c {
                 '&' => a & b,
                 '|' => a | b,
                 '^' => a ^ b,
-                '!' => !b,
+                '!' => !b & 1,          // Bitwise NOT, then mask to keep it 0 or 1
+                '>' => (!a & 1) | b,    // Logic: (NOT a) OR b
+                '=' => !(a ^ b) & 1,    // Logic: NOT (a XOR b) results in 1 if they match
                 _ => panic!("Invalid operator"),
             };
             stack.push(res);
@@ -44,7 +46,7 @@ fn print_table(variables: Vec<char>, formula: &str) -> String {
     let num_rows = 1 << variables.len();
     for i in 0..num_rows {
         let mut row = String::new();
-        for (j, var) in variables.iter().enumerate() {
+        for (j, _var) in variables.iter().enumerate() {
             let value = (i >> j) & 1;
             row.push_str(&format!("| {} ", value));
         }
