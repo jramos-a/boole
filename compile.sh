@@ -12,3 +12,5 @@ cd ..
 cd ex05 && rustc main.rs -o Negation
 cd ..
 cd ex06 && rustc main.rs -o CNF
+cd ..
+cd ex07 && rustc main.rs -o SAT
