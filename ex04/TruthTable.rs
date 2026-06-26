@@ -59,7 +59,7 @@ fn print_table(variables: Vec<char>, formula: &str) -> String {
     table
 }
 
-fn print_thruth_table(formula: &str) -> String {
+pub fn print_thruth_table(formula: &str) -> String {
     let mut variables = Vec::new();
     for c in formula.chars() {
         if c.is_ascii_alphabetic() && !variables.contains(&c) {
@@ -67,15 +67,4 @@ fn print_thruth_table(formula: &str) -> String {
         }
     }
     print_table(variables, formula)
-}
-
-fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    if args.len() != 2 {
-        println!("Usage: {} <formula>", args[0]);
-        return;
-    }
-    let formula: &str = &args[1];
-    let result = print_thruth_table(formula);
-    println!("{}", result);
 }

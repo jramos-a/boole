@@ -18,7 +18,8 @@
     - Converts everything into base operators: !, &, |
     - Applies negation rules using `negate_expr`
  */
-fn negation_normal_form(formula: &str) -> String {
+// This is setted to public so it can be used in ex06/CNF.rs
+pub fn negation_normal_form(formula: &str) -> String {
     let mut stack: Vec<String> = Vec::new();
 
     for c in formula.chars() {
@@ -125,10 +126,4 @@ fn negate_expr(expr: String) -> String {
 
     // Final negated expression in RPN
     stack.pop().unwrap()
-}
-
-
-fn main() {
-    let result = negation_normal_form("AB&!");
-    println!("{}", result);
 }

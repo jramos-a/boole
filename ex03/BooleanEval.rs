@@ -6,7 +6,7 @@
 // use std::env;
 //used by default, gives warning
 
-fn eval_formula(formula: &str) -> bool {
+pub fn eval_formula(formula: &str) -> bool {
     let mut stack: Vec<i32> = Vec::new();
 
     if formula.is_empty() {
@@ -36,16 +36,4 @@ fn eval_formula(formula: &str) -> bool {
         }
     }
     stack.pop().unwrap() == 1
-}
-
-fn main() {
-    // the way to take arguments
-    let args: Vec<String> = std::env::args().collect();
-    if args.len() != 2 {
-        println!("Usage: {} <formula>", args[0]);
-        return;
-    }
-    let formula = &args[1];
-    let result = eval_formula(formula);
-    println!("{}", result);
 }

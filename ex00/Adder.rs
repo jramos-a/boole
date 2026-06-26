@@ -19,8 +19,3 @@ pub fn adder(a: u32, b: u32) -> u32 {
 
     return sum;
 }
-
-fn main() {
-    let result = adder(5, 3);
-    println!("{}", result);
-}
